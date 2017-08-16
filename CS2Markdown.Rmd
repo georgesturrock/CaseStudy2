@@ -17,7 +17,7 @@ This presentation is composed of two main sections.  The section titled "Questio
 
 ## Libraries
 
-Two R libraries were used to address the requirements for both sections.  "ggplot2" is used for all visualizations.  "dplyr" is used to cleanse and manipulate data.
+Three R libraries were used to address the requirements for both sections.  "ggplot2" is used for all visualizations.  "dplyr" is used to cleanse and manipulate data. "gridExtra" is used specifically to produce a combined plot in the final section of this document.
 
 ```{r libraries}
 source("CS2Libraries.R")
@@ -189,9 +189,7 @@ ggplot(CityTempTop20, aes(x=Diff, y=reorder(CityCountry, Diff))) +geom_point() +
 Sections 3.i and 3.iii show similar plot graphs of the Top 20 Countries and Cities by difference between monthly average maximum and minimum temperature differences.  The greatest difference is the absense of China from the Country data set.  Cities in China occupy nine of the twenty top cities on the city plot.  It is possible China would be the top on the country plot if included in the country data set.  
 
 Additionally, these data sets show the most monthly average temperature differences can be found on the Asian continent.  Approximately half of the countries and 75% of the cities in the respective top 20 lists are located in Asia.
-```{r csq3iiii, echo=FALSE}
-library(gridExtra)
-
+```{r csq3iiii}
 countryplot <- ggplot(MMCTop20, aes(x=Diff, y=reorder(Country, Diff))) +geom_point() +labs(x="Temperature Difference", y="Country") +ggtitle("Top 20 Countries", subtitle="by difference between Max and Min Monthly Average")
 
 cityplot <- ggplot(CityTempTop20, aes(x=Diff, y=reorder(CityCountry, Diff))) +geom_point() +labs(x="Temperature Difference", y="City") +ggtitle("Top 20 Cities", subtitle="by difference between Max and Min Monthly Average")

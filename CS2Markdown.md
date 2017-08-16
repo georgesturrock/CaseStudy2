@@ -18,9 +18,10 @@ to load, cleanse and analyze data will be described in each section.
 Libraries
 ---------
 
-Two R libraries were used to address the requirements for both sections.
-"ggplot2" is used for all visualizations. "dplyr" is used to cleanse and
-manipulate data.
+Three R libraries were used to address the requirements for both
+sections. "ggplot2" is used for all visualizations. "dplyr" is used to
+cleanse and manipulate data. "gridExtra" is used specifically to produce
+a combined plot in the final section of this document.
 
 ``` {.r}
 source("CS2Libraries.R")
@@ -299,4 +300,14 @@ country plot if included in the country data set.
 Additionally, these data sets show the most monthly average temperature
 differences can be found on the Asian continent. Approximately half of
 the countries and 75% of the cities in the respective top 20 lists are
-located in Asia. ![](CS2Markdown_files/figure-markdown/csq3iiii-1.png)
+located in Asia.
+
+``` {.r}
+countryplot <- ggplot(MMCTop20, aes(x=Diff, y=reorder(Country, Diff))) +geom_point() +labs(x="Temperature Difference", y="Country") +ggtitle("Top 20 Countries", subtitle="by difference between Max and Min Monthly Average")
+
+cityplot <- ggplot(CityTempTop20, aes(x=Diff, y=reorder(CityCountry, Diff))) +geom_point() +labs(x="Temperature Difference", y="City") +ggtitle("Top 20 Cities", subtitle="by difference between Max and Min Monthly Average")
+
+grid.arrange(countryplot, cityplot, ncol=2)
+```
+
+![](CS2Markdown_files/figure-markdown/csq3iiii-1.png)
